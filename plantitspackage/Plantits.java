@@ -2,6 +2,7 @@ package plantitspackage;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import plantitspackage.Levels.*;
 
 public class Plantits {
     public ArrayList<Plants> plants; //store current plants and newly bought
@@ -10,10 +11,10 @@ public class Plantits {
     private int waterBottle;    
     private int windowCount;
     private int money;
-    private int level;
+    private Level level;
     private int grownPlantCount;
 
-    public Plantits(PlantManager plantManager, int waterBottle, int windowCount, int money, int level, int grownPlantCount) {
+    public Plantits(PlantManager plantManager, int waterBottle, int windowCount, int money, Level level, int grownPlantCount) {
         this.plants = new ArrayList<>(5);
         this.items = new ArrayList<>(4);
         this.plantManager = plantManager;
@@ -28,7 +29,7 @@ public class Plantits {
         //waterLevel, sunlightLevel, plantHealthLevel, bugs
         PlantManager initialLevel = new PlantManager(50, 50, 100, false);
         //initial levels, water bottle, window count, money, level, grown plant count
-        Plantits plantits = new Plantits(initialLevel, 300, 10, 200, 1, 0);
+        Plantits plantits = new Plantits(initialLevel, 300, 10, 200, new Level1(), 0);
         plantits.runNursery();
     }
 
@@ -60,52 +61,19 @@ public class Plantits {
                     break;
 
                 case "window":
-                    plantManager.increaseSunlightLevel(plantManager.getSunlightLevel());
-                    System.out.println("Your plant saw light!!!");
-                    System.out.println("Plant had enough sun. It evacuated inside immediately.");
+                    window();
                     break;
 
                 case "shop":
-                    System.out.println("You can buy plants from the shop.");
-                    //TODO: implement shop
+                    shop();
                     break;
 
                 case "inventory":
-                    if (items.size() > 0){
-                        System.out.println("Select item to use:");
-                        System.out.println(items.toString());
-        
-                            switch (choice){
-                                case "water booster":
-                                    plantManager.waterBoosterEffect(plantManager.getWaterLevel());
-                                    break;
-                                case "sun booster":
-                                    plantManager.sunBoosterEffect(plantManager.getSunlightLevel());
-                                    break;
-                                case "bug repelant":
-                                    //PlantManager.
-                                case "antidote":
-                                    plantManager.antidoteEffect(plantManager.getPlantHealthLevel());
-                                    break;
-                                default:
-                                    System.out.println("Invalid input.");
-                            }
-                    }else{
-                        System.out.println("You don't have any items.");
-                    }
+                    inventory();
                     break;
 
                 case "nextDay":
-                    plantManager.deductProperties(plantManager.getWaterLevel(), plantManager.getSunlightLevel(), plantManager.getPlantHealthLevel());
-                    //TODO: refill water in shop 
-                    
-                    plantManager.bugRandomizer(0.05);
-
-                    if (plantManager.getBugs()) {
-                        System.out.println("Oh no! Bugs have appeared!");
-                        plantManager.deductPlantHealthLevel(plantManager.getPlantHealthLevel());
-                    }
-                
+                    nextDay();
                     break;
                     
                 default:
@@ -115,12 +83,64 @@ public class Plantits {
         }
     }
 
+    public void window() {
+        plantManager.increaseSunlightLevel(plantManager.getSunlightLevel());
+        System.out.println("Your plant saw light!!!");
+        System.out.println("Plant had enough sun. It evacuated inside immediately.");
+    }
+
     public void water(){
         if(plantManager.enoughResources(waterBottle)){
             plantManager.increaseWaterLevel(plantManager.getWaterLevel());
             System.out.println("Plant watered.");
             waterBottle -= 100;
         }
+    }
+
+    public void shop() {
+        System.out.println("The available items in the shop are:");
+        level.printAvailaleItems();
+    }
+
+    public void inventory() {
+        Scanner userInput = new Scanner(System.in);
+        if (items.size() > 0) {
+            System.out.println("Select item to use:");
+            String choice = userInput.nextLine().toLowerCase();
+            System.out.println(items.toString());
+
+            switch (choice) {
+                case "water booster":
+                    plantManager.waterBoosterEffect(plantManager.getWaterLevel());
+                    break;
+                case "sun booster":
+                    plantManager.sunBoosterEffect(plantManager.getSunlightLevel());
+                    break;
+                case "bug repelant":
+                    // PlantManager.
+                case "antidote":
+                    plantManager.antidoteEffect(plantManager.getPlantHealthLevel());
+                    break;
+                default:
+                    System.out.println("Invalid input.");
+            }
+        } else {
+            System.out.println("You don't have any items.");
+        }
+    }
+
+    public void nextDay() {
+        plantManager.deductProperties(plantManager.getWaterLevel(), plantManager.getSunlightLevel(),
+                plantManager.getPlantHealthLevel());
+        // TODO: refill water in shop
+
+        plantManager.bugRandomizer(0.05);
+
+        if (plantManager.getBugs()) {
+            System.out.println("Oh no! Bugs have appeared!");
+            plantManager.deductPlantHealthLevel(plantManager.getPlantHealthLevel());
+        }
+                
     }
 
     private void printDisplayStatus() {
