@@ -21,6 +21,8 @@ public class ItemFactory {
                 return new BugRepelant();
             case 9:
                 return new Antidote();
+            case 10:
+                return new WaterRefill();
             default:
                 throw new IllegalArgumentException("Invalid item type");
         }
@@ -116,6 +118,16 @@ class Antidote implements Items{
     }
     public String getItemType() {
         return "Antidote";
+    }
+}
+
+class WaterRefill implements Items{
+    @Override
+    public void purchase(Items items) {
+        System.out.println("You purchased a WaterRefill");
+    }
+    public String getItemType() {
+        return "WaterRefill";
     }
 }
 
