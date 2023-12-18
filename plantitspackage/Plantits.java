@@ -1,6 +1,7 @@
 package plantitspackage;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Plantits {
     public ArrayList<Plants> plants; //store current plants and newly bought
@@ -60,6 +61,29 @@ public class Plantits {
                     break;
 
                 case "inventory":
+                    if (items.size() > 0){
+                        System.out.println("Select item to use:");
+                        System.out.println(items.toString());
+        
+                            switch (choice){
+                                case "water booster":
+                                    plantManager.waterBoosterEffect(plantManager.getWaterLevel());
+                                    break;
+                                case "sun booster":
+                                    plantManager.sunBoosterEffect(plantManager.getSunlightLevel());
+                                    break;
+                                case "bug repelant":
+                                    //PlantManager.
+                                case "antidote":
+                                    plantManager.antidoteEffect(plantManager.getPlantHealthLevel());
+                                    break;
+                                default:
+                                    System.out.println("Invalid input.");
+                            }
+                    }else{
+                        System.out.println("You don't have any items.");
+                    }
+                    break;
 
                 case "nextDay":
                     plantManager.deductProperties(plantManager.getWaterLevel(), plantManager.getSunlightLevel(), plantManager.getPlantHealthLevel());
