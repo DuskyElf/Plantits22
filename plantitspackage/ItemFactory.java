@@ -1,4 +1,5 @@
 package plantitspackage;
+import java.util.Arrays;
 
 public class ItemFactory {
     public static Items createItem(int itemType){
@@ -26,6 +27,22 @@ public class ItemFactory {
             default:
                 throw new IllegalArgumentException("Invalid item type");
         }
+    }
+
+    public static String[] getItems() {
+        String[] items = {
+                "Begonia",
+                "Hydrangea",
+                "Cactus",
+                "Lavender",
+                "Sunflower",
+                "WaterBooster",
+                "SunBooster",
+                "BugRepelant",
+                "Antidote",
+                "WaterRefill"
+        };
+        return items;
     }
 }
 
