@@ -18,14 +18,14 @@ public class ShopFactory {
 }
 
 class Shop1 implements Shop{
-    private int waterBoosterCount = 2;
+    private int WaterRefillCount = 2;
 
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
-            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
-                waterBoosterCount--;
+            if(item.getItemType().equalsIgnoreCase("WaterRefill")){
+                WaterRefillCount--;
             }
         }
         else{
@@ -38,7 +38,7 @@ class Shop1 implements Shop{
         if (itemType.equalsIgnoreCase("Cactus")){
             return true;
         }
-        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+        else if (itemType.equalsIgnoreCase("WaterRefill") && WaterRefillCount > 0){
             return true;
         }
         else{
@@ -48,14 +48,14 @@ class Shop1 implements Shop{
 }
 
 class Shop2 implements Shop{
-    private int waterBoosterCount = 2;
+    private int WaterRefillCount = 2;
 
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
-            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
-                waterBoosterCount--;
+            if(item.getItemType().equalsIgnoreCase("WaterRefill")){
+                WaterRefillCount--;
             }
         }
         else{
@@ -69,7 +69,7 @@ class Shop2 implements Shop{
         itemType.equalsIgnoreCase("Hydrangea")){
             return true;
         }
-        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+        else if (itemType.equalsIgnoreCase("WaterRefill") && WaterRefillCount > 0){
             return true;
         }
         else{
@@ -79,14 +79,14 @@ class Shop2 implements Shop{
 }
 
 class Shop3 implements Shop{
-    private int waterBoosterCount = 2;
+    private int WaterRefillCount = 2;
 
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
-            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
-                waterBoosterCount--;
+            if(item.getItemType().equalsIgnoreCase("WaterRefill")){
+                WaterRefillCount--;
             }
         }
         else{
@@ -103,7 +103,7 @@ class Shop3 implements Shop{
         itemType.equalsIgnoreCase("Antidote")){
             return true;
         }
-        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+        else if (itemType.equalsIgnoreCase("WaterRefill") && WaterRefillCount > 0){
             return true;
         }
         else{
@@ -113,14 +113,14 @@ class Shop3 implements Shop{
 }
 
 class Shop4 implements Shop{
-    private int waterBoosterCount = 2;
+    private int WaterRefillCount = 2;
 
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
-            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
-                waterBoosterCount--;
+            if(item.getItemType().equalsIgnoreCase("WaterRefill")){
+                WaterRefillCount--;
             }
         }
         else{
@@ -130,11 +130,11 @@ class Shop4 implements Shop{
 
     @Override
     public boolean isItemAvailable(String itemType) {
-        if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+        if (itemType.equalsIgnoreCase("WaterRefill") && WaterRefillCount > 0){
             return true;
         } 
         else{
-            return !itemType.equalsIgnoreCase("WaterBooster");
+            return !itemType.equalsIgnoreCase("WaterRefill");
         }//all items available
     }
 }
