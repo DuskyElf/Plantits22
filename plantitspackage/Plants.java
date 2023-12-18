@@ -1,6 +1,6 @@
 package plantitspackage;
 
-public abstract class Plants {
+public abstract class Plants implements Items{
     protected int waterReq;
     protected int sunlightReq;
     protected int buyPrice;
@@ -14,8 +14,6 @@ public abstract class Plants {
         this.sellPrice = sellPrice;
         this.diseaseLevel = diseaseLevel;
     }
-
-    public abstract String getPlantName();
     
     //getters
     public int getWaterReq() {
@@ -44,21 +42,26 @@ class Begonia extends Plants {
     public Begonia() {
         super(100, 100, 50, 70, 30);
     }
-
     @Override
-    public String getPlantName() {
+    public void purchase(Items items) {
+        
+        System.out.println("You purchased a Begonia");
+    }
+        public String getItemType() {
         return "Begonia";
     }
 }
 
-class Lavender extends Plants {
-    public Lavender() {
-        super(100, 100, 50,70, 30);
+class Hydrangea extends Plants {
+    public Hydrangea() {
+        super(100, 100, 50, 70, 30);
     }
-
     @Override
-    public String getPlantName() {
-        return "Lavender";
+    public void purchase(Items items) {
+        System.out.println("You purchased a Hydrangea");
+    }
+    public String getItemType() {
+        return "Hydrangea";
     }
 }
 
@@ -66,10 +69,25 @@ class Cactus extends Plants {
     public Cactus() {
         super(100, 100, 50,70, 30);
     }
-
     @Override
-    public String getPlantName() {
+    public void purchase(Items items) {
+        System.out.println("You purchased a Cactus");
+    }
+    public String getItemType() {
         return "Cactus";
+    }
+}
+
+class Lavender extends Plants {
+    public Lavender() {
+        super(100, 100, 50,70, 30);
+    }
+    @Override
+    public void purchase(Items items) {
+        System.out.println("You purchased a Lavender");
+    }
+    public String getItemType() {
+        return "Lavender";
     }
 }
 
@@ -77,9 +95,11 @@ class Sunflower extends Plants {
     public Sunflower() {
         super(100, 100, 50,70, 30);
     }
-
     @Override
-    public String getPlantName() {
+    public void purchase(Items items) {
+        System.out.println("You purchased a Sunflower");
+    }
+    public String getItemType() {
         return "Sunflower";
     }
 }
