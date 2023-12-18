@@ -31,7 +31,7 @@ public class PlantManager {
         return bugs;
     }
 
-    public boolean bugRandomizer(double value) {
+    public void bugRandomizer(double value) {
         bugs = (Math.random() < value);
     }
 
