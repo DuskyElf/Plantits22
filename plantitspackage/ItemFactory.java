@@ -1,5 +1,4 @@
 package plantitspackage;
-import java.util.Arrays;
 
 public class ItemFactory {
     public static Items createItem(int itemType){
