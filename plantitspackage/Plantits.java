@@ -65,11 +65,11 @@ public class Plantits {
                     plantManager.deductProperties(plantManager.getWaterLevel(), plantManager.getSunlightLevel(), plantManager.getPlantHealthLevel());
                     //TODO: refill water in shop 
                     
-                    plantManager.bugProbability(0.05);
+                    plantManager.bugRandomizer(0.05);
 
                     if (plantManager.getBugs()) {
                         System.out.println("Oh no! Bugs have appeared!");
-                        plantManager.deductPlantHealth();
+                        plantManager.deductPlantHealthLevel(plantManager.getPlantHealthLevel());
                     }
                 
                     break;
