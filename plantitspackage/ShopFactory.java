@@ -18,10 +18,15 @@ public class ShopFactory {
 }
 
 class Shop1 implements Shop{
+    private int waterBoosterCount = 2;
+
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
+            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
+                waterBoosterCount--;
+            }
         }
         else{
             System.out.println("Sorry, this item is not available in Level 1");
@@ -30,67 +35,106 @@ class Shop1 implements Shop{
 
     @Override
     public boolean isItemAvailable(String itemType) {
-        return itemType.equalsIgnoreCase("Cactus") ||
-        itemType.equalsIgnoreCase("WaterBooster");
+        if (itemType.equalsIgnoreCase("Cactus")){
+            return true;
+        }
+        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
 class Shop2 implements Shop{
+    private int waterBoosterCount = 2;
+
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
+            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
+                waterBoosterCount--;
+            }
         }
         else{
             System.out.println("Sorry, this item is not available in Level 2");
         }
     }
-
     @Override
     public boolean isItemAvailable(String itemType) {
-        return itemType.equalsIgnoreCase("Cactus") ||
-        itemType.equalsIgnoreCase("WaterBooster") ||
+        if (itemType.equalsIgnoreCase("Cactus") ||
         itemType.equalsIgnoreCase("Begonia") ||
-        itemType.equalsIgnoreCase("Hydrangea");
+        itemType.equalsIgnoreCase("Hydrangea")){
+            return true;
+        }
+        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
 class Shop3 implements Shop{
+    private int waterBoosterCount = 2;
+
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
+            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
+                waterBoosterCount--;
+            }
         }
         else{
             System.out.println("Sorry, this item is not available in Level 3");
         }
     }
-
     @Override
     public boolean isItemAvailable(String itemType) {
-        return itemType.equalsIgnoreCase("Cactus") ||
-        itemType.equalsIgnoreCase("WaterBooster") ||
+        if (itemType.equalsIgnoreCase("Cactus") ||
         itemType.equalsIgnoreCase("Begonia") ||
         itemType.equalsIgnoreCase("Hydrangea") ||
         itemType.equalsIgnoreCase("SunBooster") ||
         itemType.equalsIgnoreCase("BugRepelant") ||
-        itemType.equalsIgnoreCase("Antidote");
+        itemType.equalsIgnoreCase("Antidote")){
+            return true;
+        }
+        else if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
 class Shop4 implements Shop{
+    private int waterBoosterCount = 2;
+
     @Override
     public void purchaseItem(Items item) {
         if (isItemAvailable(item.getItemType())){
             item.purchase(item);
+            if(item.getItemType().equalsIgnoreCase("WaterBooster")){
+                waterBoosterCount--;
+            }
         }
         else{
-            System.out.println("Sorry, this item is not available in Level 3");
+            System.out.println("Sorry, this item is not available in Level 4");
         }
     }
 
     @Override
     public boolean isItemAvailable(String itemType) {
-        return true; //all items available
+        if (itemType.equalsIgnoreCase("WaterBooster") && waterBoosterCount > 0){
+            return true;
+        } 
+        else{
+            return !itemType.equalsIgnoreCase("WaterBooster");
+        }//all items available
     }
 }
