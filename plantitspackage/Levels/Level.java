@@ -6,7 +6,7 @@ public abstract class Level {
 
     }
 
-    boolean isItemAvailable(String itemType) {
+    public boolean isItemAvailable(String itemType) {
         return false;
     }
 
