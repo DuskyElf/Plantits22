@@ -47,81 +47,11 @@ public class ItemFactory {
 
 }
 
-//ITEMS
-
-class Begonia implements Items{
-    @Override
-    public void purchase(Items items) {
-        
-        System.out.println("You purchased a Begonia");
-    }
-    public boolean isPlant(String itemType){
-        return true;
-    }
-    public String getItemType() {
-        return "Begonia";
-    }
-}
-
-class Hydrangea implements Items{
-    @Override
-    public void purchase(Items items) {
-        System.out.println("You purchased a Hydrangea");
-    }
-    public boolean isPlant(String itemType){
-        return true;
-    }
-    public String getItemType() {
-        return "Hydrangea";
-    }
-}
-
-class Cactus implements Items{
-    @Override
-    public void purchase(Items items) {
-        System.out.println("You purchased a Cactus");
-    }
-    public boolean isPlant(String itemType){
-        return true;
-    }
-    public String getItemType() {
-        return "Cactus";
-    }
-}
-
-class Lavender implements Items{
-    @Override
-    public void purchase(Items items) {
-        System.out.println("You purchased a Lavender");
-    }
-    public boolean isPlant(String itemType){
-        return true;
-    }
-    public String getItemType() {
-        return "Lavender";
-    }
-}
-
-class Sunflower implements Items{
-    @Override
-    public void purchase(Items items) {
-        System.out.println("You purchased a Sunflower");
-    }
-    public boolean isPlant(String itemType){
-        return true;
-    }
-    public String getItemType() {
-        return "Sunflower";
-    }
-}
 
 class WaterBooster implements Items{
     @Override
     public void purchase(Items items) {
         System.out.println("You purchased a WaterBooster");
-    }
-    public boolean isPlant(String itemType){
-        return false;
     }
     public String getItemType() {
         return "WaterBooster";
@@ -133,9 +63,6 @@ class SunBooster implements Items{
     public void purchase(Items items) {
         System.out.println("You purchased a SunBooster");
     }
-    public boolean isPlant(String itemType){
-        return false;
-    }
     public String getItemType() {
         return "SunBooster";
     }
@@ -145,9 +72,6 @@ class BugRepelant implements Items{
     @Override
     public void purchase(Items items) {
         System.out.println("You purchased a BugRepelant");
-    }
-    public boolean isPlant(String itemType){
-        return false;
     }
     public String getItemType() {
         return "BugRepelant";
@@ -159,9 +83,6 @@ class Antidote implements Items{
     public void purchase(Items items) {
         System.out.println("You purchased a Antidote");
     }
-    public boolean isPlant(String itemType){
-        return false;
-    }
     public String getItemType() {
         return "Antidote";
     }
@@ -171,9 +92,6 @@ class WaterRefill implements Items{
     @Override
     public void purchase(Items items) {
         System.out.println("You purchased a WaterRefill");
-    }
-    public boolean isPlant(String itemType){
-        return false;
     }
     public String getItemType() {
         return "WaterRefill";
