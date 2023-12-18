@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Plantits {
     public ArrayList<Plants> plants; //store current plants and newly bought
-    public ArrayList<String> items; // store items
+    public ArrayList<Items> items; // store items
     private PlantManager plantManager;
     private int waterBottle;    
     private int windowCount;
@@ -36,9 +36,19 @@ public class Plantits {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Welcome to Plantits!");
 
+        //PRINT MAIN MENU
         printDisplayStatus(); //location line to be adjusted 
 
         while (true) {
+            System.out.println("What would you like to do?");
+            System.out.println("-off");
+            System.out.println("-water");
+            System.out.println("-window");
+            System.out.println("-shop");
+            System.out.println("-inventory");
+            System.out.println("-nextday");
+
+            System.out.println("Enter your choice: ");
             String choice = userInput.nextLine().toLowerCase();
             
             switch(choice){
@@ -108,6 +118,7 @@ public class Plantits {
     public void water(){
         if(plantManager.enoughResources(waterBottle)){
             plantManager.increaseWaterLevel(plantManager.getWaterLevel());
+            System.out.println("Plant watered.");
             waterBottle -= 100;
         }
     }
