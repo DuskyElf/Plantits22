@@ -40,16 +40,17 @@ public class Plantits {
         printDisplayStatus(); //location line to be adjusted 
 
         while (true) {
+            System.out.println("======================================\n");
             System.out.println("What would you like to do?");
             System.out.println("-off");
             System.out.println("-water");
             System.out.println("-window");
             System.out.println("-shop");
             System.out.println("-inventory");
-            System.out.println("-nextday");
-
+            System.out.println("-nextday\n");
             System.out.println("Enter your choice: ");
             String choice = userInput.nextLine().toLowerCase();
+            System.out.println("======================================\n");
             
             switch(choice){
                 case "off":
@@ -89,14 +90,14 @@ public class Plantits {
 
     public void window() {
         plantManager.increaseSunlightLevel();
-        System.out.println("Your plant saw light!!!");
-        System.out.println("Plant had enough sun. It evacuated inside immediately.");
+        System.out.println("\nYour plant saw light!!!");
+        System.out.println("Plant had enough sun. It evacuated inside immediately.\n");
     }
 
     public void water(){
         if(plantManager.enoughResources(waterBottle)){
             plantManager.increaseWaterLevel();
-            System.out.println("Plant watered.");
+            System.out.println("\nPlant watered.\n");
             waterBottle -= 100;
         }
     }
@@ -105,20 +106,33 @@ public class Plantits {
         Scanner userInput = new Scanner(System.in);
         System.out.println("The available items in the shop are:");
         level.printAvailaleItems();
-        System.out.println("What would you like to do?\n -buy\n -back");
+        System.out.println();
+        System.out.println("What would you like to do?\n -buy\n -back\n");
         String choice = userInput.nextLine().toLowerCase();
 
         switch (choice){
             case "buy":
                 System.out.println("What would you like to buy?");
                 String itemChoice = userInput.nextLine().toLowerCase();
+                System.out.println();
+
                 if (level.isItemAvailable(itemChoice)) {
                     Items item = ItemFactory.createItem(itemChoice);
+                    //plant classes added directly to plants arraylist not inventory
                     if (item instanceof Plants) {
                         plants.add((Plants) item);
+                        // debugging
+                        // for (Items i : plants){
+                        //     System.out.println(i);
+                        // }
                     }
+                    //items added to the items arraylist in inventory
                     else{
-                        items.add((Items) item);
+                        items.add((Items) item); 
+                        // debugging
+                        // for (Items i : items){
+                        //     System.out.println(i);
+                        // }
                     }
                 }else{
                     System.out.println("Item not available in this Level.");
