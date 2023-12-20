@@ -39,34 +39,35 @@ public class PlantManager {
         return (waterLevel >= 100 && sunlightLevel >= 100);
     }
 
-    public void increaseWaterLevel(int waterLevel){
+    public void increaseWaterLevel(){
         waterLevel += 10;
     }
 
-    public void waterBoosterEffect(int waterLevel){
+    public void waterBoosterEffect(){
         waterLevel += 20;
     }
-    public void increaseSunlightLevel(int sunlightLevel){
+
+    public void increaseSunlightLevel(){
         sunlightLevel += 10;
     }
 
-    public void sunBoosterEffect(int waterLevel){
+    public void sunBoosterEffect(){
         waterLevel += 20;
     }
     //bugs
-    public void deductPlantHealthLevel(int plantHealthLevel){
+    public void deductPlantHealthLevel(){
         plantHealthLevel -= 10;
     }
 
-    public boolean plantSick(int plantHealthLevel, int diseaseLevel){
+    public boolean plantSick(int diseaseLevel){
         return (plantHealthLevel <= diseaseLevel);
     }
     
-    public void antidoteEffect(int plantHealthLevel){
+    public void antidoteEffect(){
         plantHealthLevel += 50;
     }
 
-    public void deductProperties (int waterLevel, int sunlightLevel, int plantHealthLevel){
+    public void deductProperties (){
         waterLevel -= 10;
         sunlightLevel -= 10;
         plantHealthLevel -= 10;
