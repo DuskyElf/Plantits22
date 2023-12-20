@@ -76,7 +76,7 @@ public class Plantits {
                     printDisplayStatus(); //location line to be adjusted 
                     break;
 
-                case "nextDay":
+                case "nextday":
                     nextDay();
                     printDisplayStatus(); //location line to be adjusted 
                     break;
