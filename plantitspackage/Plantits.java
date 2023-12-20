@@ -1,7 +1,6 @@
 package plantitspackage;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 import plantitspackage.Levels.*;
 
 public class Plantits {
@@ -37,7 +36,7 @@ public class Plantits {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Welcome to Plantits!");
 
-        //PRINT MAIN MENU
+        //PRINT REPORT
         printDisplayStatus(); //location line to be adjusted 
 
         while (true) {
@@ -58,49 +57,82 @@ public class Plantits {
 
                 case "water":
                     water();
+                    printDisplayStatus(); //location line to be adjusted 
                     break;
 
                 case "window":
                     window();
+                    printDisplayStatus(); //location line to be adjusted 
                     break;
 
                 case "shop":
                     shop();
+                    printDisplayStatus(); //location line to be adjusted 
                     break;
 
                 case "inventory":
                     inventory();
+                    printDisplayStatus(); //location line to be adjusted 
                     break;
 
                 case "nextDay":
                     nextDay();
+                    printDisplayStatus(); //location line to be adjusted 
                     break;
                     
                 default:
                     System.out.println("Invalid input.");
-
+                    printDisplayStatus(); //location line to be adjusted 
             }
         }
     }
 
     public void window() {
-        plantManager.increaseSunlightLevel(plantManager.getSunlightLevel());
+        plantManager.increaseSunlightLevel();
         System.out.println("Your plant saw light!!!");
         System.out.println("Plant had enough sun. It evacuated inside immediately.");
     }
 
     public void water(){
         if(plantManager.enoughResources(waterBottle)){
-            plantManager.increaseWaterLevel(plantManager.getWaterLevel());
+            plantManager.increaseWaterLevel();
             System.out.println("Plant watered.");
             waterBottle -= 100;
         }
     }
 
     public void shop() {
+        Scanner userInput = new Scanner(System.in);
         System.out.println("The available items in the shop are:");
         level.printAvailaleItems();
+        System.out.println("What would you like to do?\n -buy\n -back");
+        String choice = userInput.nextLine().toLowerCase();
+
+        switch (choice){
+            case "buy":
+                System.out.println("What would you like to buy?");
+                String itemChoice = userInput.nextLine().toLowerCase();
+                if (level.isItemAvailable(itemChoice)) {
+                    Items item = ItemFactory.createItem(itemChoice);
+                    if (item instanceof Plants) {
+                        plants.add((Plants) item);
+                    }
+                    else{
+                        items.add((Items) item);
+                    }
+                }else{
+                    System.out.println("Item not available in this Level.");
+                }
+                break;
+            case "back":
+                System.out.println("Thank you for visiting!");
+                break;
+
+            default:
+                System.out.println("Invalid input.");
+        }
     }
+
 
     public void inventory() {
         Scanner userInput = new Scanner(System.in);
@@ -111,15 +143,15 @@ public class Plantits {
 
             switch (choice) {
                 case "water booster":
-                    plantManager.waterBoosterEffect(plantManager.getWaterLevel());
+                    plantManager.waterBoosterEffect();
                     break;
                 case "sun booster":
-                    plantManager.sunBoosterEffect(plantManager.getSunlightLevel());
+                    plantManager.sunBoosterEffect();
                     break;
                 case "bug repelant":
                     // PlantManager.
                 case "antidote":
-                    plantManager.antidoteEffect(plantManager.getPlantHealthLevel());
+                    plantManager.antidoteEffect();
                     break;
                 default:
                     System.out.println("Invalid input.");
@@ -130,15 +162,14 @@ public class Plantits {
     }
 
     public void nextDay() {
-        plantManager.deductProperties(plantManager.getWaterLevel(), plantManager.getSunlightLevel(),
-                plantManager.getPlantHealthLevel());
+        plantManager.deductProperties();
         // TODO: refill water in shop
 
         plantManager.bugRandomizer(0.05);
 
         if (plantManager.getBugs()) {
             System.out.println("Oh no! Bugs have appeared!");
-            plantManager.deductPlantHealthLevel(plantManager.getPlantHealthLevel());
+            plantManager.deductPlantHealthLevel();
         }
                 
     }
