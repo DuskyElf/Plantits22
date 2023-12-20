@@ -12,6 +12,7 @@ public class Plantits {
     private int money;
     private Level level;
     private int grownPlantCount;
+    private Plants selectedPlant;
 
     public Plantits(PlantManager plantManager, int waterBottle, int windowCount, int money, Level level, int grownPlantCount) {
         this.plants = new ArrayList<Plants>(5);
@@ -22,6 +23,7 @@ public class Plantits {
         this.money = money;
         this.level = level;
         this.grownPlantCount = grownPlantCount;
+        this.selectedPlant = null;
     }
 
     public static void main(String[] args) {
@@ -202,7 +204,7 @@ public class Plantits {
         if (plants.size() > 0) {
             System.out.println("Here are all your plants:");
             for (int i = 0; i < plants.size(); ++i) {
-                System.out.println(i + plants.get(i).getItemType());
+                System.out.println(i + ": " + plants.get(i).getItemType());
             }
             System.out.println("Select a plant to seek into:");
             Scanner userInput = new Scanner(System.in);
@@ -215,7 +217,8 @@ public class Plantits {
             }
 
             Plants plant = plants.get(plantIndex);
-            System.out.println("You choosed item " + plant.getItemType());
+            this.selectedPlant = plant;
+            System.out.println("You selected Plant number " + plantIndex + " which is a " + plant.getItemType());
         } else {
             System.out.println("You don't have any items.\n");
         }
