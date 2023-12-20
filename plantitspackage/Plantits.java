@@ -47,7 +47,7 @@ public class Plantits {
             System.out.println("-window");
             System.out.println("-shop");
             System.out.println("-inventory");
-            System.out.println("-seekPlant");
+            System.out.println("-selectPlant");
             System.out.println("-nextday\n");
             System.out.println("Enter your choice: ");
             String choice = userInput.nextLine().toLowerCase();
@@ -81,8 +81,8 @@ public class Plantits {
                     printDisplayStatus(); //location line to be adjusted 
                     break;
                 
-                case "seekplant":
-                    seekPlant();
+                case "selectplant":
+                    selectPlant();
                     printDisplayStatus();
                     break;
 
@@ -198,7 +198,7 @@ public class Plantits {
         }
     }
 
-    public void seekPlant() {
+    public void selectPlant() {
         if (plants.size() > 0) {
             System.out.println("Here are all your plants:");
             for (int i = 0; i < plants.size(); ++i) {
