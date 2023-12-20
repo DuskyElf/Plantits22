@@ -1,28 +1,39 @@
 package plantitspackage;
 
 public class ItemFactory {
+    private static Items begonia = new Begonia();
+    private static Items hydrangea = new Hydrangea();
+    private static Items cactus = new Cactus();
+    private static Items lavender = new Lavender();
+    private static Items sunflower = new Sunflower();
+    private static Items waterbooster = new WaterBooster();
+    private static Items sunbooster = new SunBooster();
+    private static Items bugrepelant = new BugRepelant();
+    private static Items antidote = new Antidote();
+    private static Items waterrefill = new WaterRefill();
+
     public static Items createItem(String itemType){
         switch(itemType.toLowerCase()){
             case "begonia":
-                return new Begonia();
+                return begonia;
             case "hydrangea":
-                return new Hydrangea();
+                return hydrangea;
             case "cactus":
-                return new Cactus();
+                return cactus;
             case "lavender":
-                return new Lavender();
+                return lavender;
             case "sunflower":
-                return new Sunflower();
+                return sunflower;
             case "waterbooster":
-                return new WaterBooster();
+                return waterbooster;
             case "sun booster":
-                return new SunBooster();
+                return sunbooster;
             case "bugrepelant":
-                return new BugRepelant();
+                return bugrepelant;
             case "antidote":
-                return new Antidote();
+                return antidote;
             case "waterrefill":
-                return new WaterRefill();
+                return waterrefill;
             default:
                 throw new IllegalArgumentException("Invalid item type");
         }

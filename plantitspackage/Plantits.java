@@ -149,32 +149,41 @@ public class Plantits {
 
     public void inventory() {
         if (items.size() > 0) {
-            System.out.println("Select item to use:");
+            System.out.println("Here are your items:");
             for (Items i : items){
                 System.out.println(i.getItemType());
             }
 
+            System.out.println("Select item to use:");
             Scanner userInput = new Scanner(System.in);
-            String choice = userInput.nextLine().toLowerCase();
+            String itemChoice = userInput.nextLine().toLowerCase();
             System.out.println();
 
-            switch (choice) {
-                case "water booster":
-                    plantManager.waterBoosterEffect();
-                    break;
-                case "sun booster":
-                    plantManager.sunBoosterEffect();
-                    break;
-                case "bug repelant":
-                    // PlantManager.
-                case "antidote":
-                    plantManager.antidoteEffect();
-                    break;
-                default:
-                    System.out.println("Invalid input.");
+            Items item = ItemFactory.createItem(itemChoice);
+            if (items.contains(item)){
+                switch (itemChoice) {
+                    case "waterbooster":
+                        plantManager.waterBoosterEffect();
+                        break;
+                    case "sunbooster":
+                        plantManager.sunBoosterEffect();
+                        break;
+                    case "bugrepelant":
+                        // PlantManager.
+                    case "antidote":
+                        plantManager.antidoteEffect();
+                        break;         
+                    case "waterrefill":
+                        waterBottle+=100;
+                        break;     
+                    default:
+                        System.out.println("Invalid input.");
+                }
+            } else {
+                System.out.println("Item is not in your inventory.");
             }
         } else {
-            System.out.println("You don't have any items.");
+            System.out.println("You don't have any items.\n");
         }
     }
 
