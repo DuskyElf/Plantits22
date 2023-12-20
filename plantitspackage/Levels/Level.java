@@ -3,7 +3,7 @@ import plantitspackage.*;
 
 public abstract class Level {
     //ADDED THIS FOR WATER REFILL
-    private int WaterRefillCount = 2;
+    int WaterRefillCount = 2;
     
     void purchaseItem(Items item) {
 
