@@ -28,7 +28,7 @@ public class Plantits {
         //waterLevel, sunlightLevel, plantHealthLevel, bugs
         PlantManager initialLevel = new PlantManager(50, 50, 100, false);
         //initial levels, water bottle, window count, money, level, grown plant count
-        Plantits plantits = new Plantits(initialLevel, 300, 10, 200, new Level1(), 0);
+        Plantits plantits = new Plantits(initialLevel, 300,3, 200, new Level1(), 0);
         plantits.runNursery();
     }
 
@@ -62,8 +62,12 @@ public class Plantits {
                     break;
 
                 case "window":
-                    window();
-                    printDisplayStatus(); //location line to be adjusted 
+                    if (windowCount>0){
+                        window();
+                        printDisplayStatus(); //location line to be adjusted 
+                    }else{
+                        System.out.println("Pot stuck to the lift. Can't move plant.\n");
+                    }
                     break;
 
                 case "shop":
@@ -92,6 +96,7 @@ public class Plantits {
         plantManager.increaseSunlightLevel();
         System.out.println("\nYour plant saw light!!!");
         System.out.println("Plant had enough sun. It evacuated inside immediately.\n");
+        windowCount--;
     }
 
     public void water(){
@@ -192,17 +197,25 @@ public class Plantits {
     public void nextDay() {
         plantManager.deductProperties();
         //refill water in shop
-        Level level = new Level();
-        
+        // HOW TO TEST IF WATER IS AVAILABLE AT LEVEL 3, probably set Level to 3 manually-
+        // IDK HOW TO USE ONE LINE TO DO THIS SINCE THE REFILL WATER IS WITHIN THE LEVELS PACKAGE
+        Level level1 = new Level1();
+        Level level2 = new Level2();
+        Level level3 = new Level3();
+        Level level4 = new Level4();
+        level1.refillWater();
+        level2.refillWater();
+        level3.refillWater();
+        level4.refillWater();
         
 
         plantManager.bugRandomizer(0.05);
-
         if (plantManager.getBugs()) {
             System.out.println("Oh no! Bugs have appeared!");
             plantManager.deductPlantHealthLevel();
         }
-                
+        
+        printDisplayStatus();
     }
 
     private void printDisplayStatus() {
