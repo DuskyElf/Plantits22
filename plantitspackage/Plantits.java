@@ -47,6 +47,7 @@ public class Plantits {
             System.out.println("-window");
             System.out.println("-shop");
             System.out.println("-inventory");
+            System.out.println("-seekPlant");
             System.out.println("-nextday\n");
             System.out.println("Enter your choice: ");
             String choice = userInput.nextLine().toLowerCase();
@@ -79,8 +80,13 @@ public class Plantits {
                     inventory();
                     printDisplayStatus(); //location line to be adjusted 
                     break;
+                
+                case "seekplant":
+                    seekPlant();
+                    printDisplayStatus();
+                    break;
 
-                case "nextday":
+                case "nextpay":
                     nextDay();
                     printDisplayStatus(); //location line to be adjusted 
                     break;
@@ -192,8 +198,29 @@ public class Plantits {
         }
     }
 
-    // next day should deduct waterlevel, sunlightlevel, and planthealthlevel
-    // 
+    public void seekPlant() {
+        if (plants.size() > 0) {
+            System.out.println("Here are all your plants:");
+            for (int i = 0; i < plants.size(); ++i) {
+                System.out.println(i + plants.get(i).getItemType());
+            }
+            System.out.println("Select a plant to seek into:");
+            Scanner userInput = new Scanner(System.in);
+            int plantIndex = userInput.nextInt();
+            System.out.println();
+
+            if (plantIndex < 0 || plantIndex >= plants.size()) {
+                System.out.println("Invalid Input.");
+                return;
+            }
+
+            Plants plant = plants.get(plantIndex);
+            System.out.println("You choosed item " + plant.getItemType());
+        } else {
+            System.out.println("You don't have any items.\n");
+        }
+    }
+
     public void nextDay() {
         plantManager.deductProperties();
         //refill water in shop
