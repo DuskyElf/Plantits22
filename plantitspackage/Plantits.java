@@ -187,9 +187,14 @@ public class Plantits {
         }
     }
 
+    // next day should deduct waterlevel, sunlightlevel, and planthealthlevel
+    // 
     public void nextDay() {
         plantManager.deductProperties();
-        // TODO: refill water in shop
+        //refill water in shop
+        Level level = new Level();
+        
+        
 
         plantManager.bugRandomizer(0.05);
 
