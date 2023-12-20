@@ -14,8 +14,8 @@ public class Plantits {
     private int grownPlantCount;
 
     public Plantits(PlantManager plantManager, int waterBottle, int windowCount, int money, Level level, int grownPlantCount) {
-        this.plants = new ArrayList<>(5);
-        this.items = new ArrayList<>(4);
+        this.plants = new ArrayList<Plants>(5);
+        this.items = new ArrayList<Items>(4);
         this.plantManager = plantManager;
         this.waterBottle = waterBottle;
         this.windowCount = windowCount;
@@ -131,7 +131,7 @@ public class Plantits {
                         items.add((Items) item); 
                         // debugging
                         // for (Items i : items){
-                        //     System.out.println(i);
+                        //     System.out.println(i.getItemType());
                         // }
                     }
                 }else{
@@ -141,7 +141,6 @@ public class Plantits {
             case "back":
                 System.out.println("Thank you for visiting!");
                 break;
-
             default:
                 System.out.println("Invalid input.");
         }
@@ -149,11 +148,15 @@ public class Plantits {
 
 
     public void inventory() {
-        Scanner userInput = new Scanner(System.in);
         if (items.size() > 0) {
             System.out.println("Select item to use:");
+            for (Items i : items){
+                System.out.println(i.getItemType());
+            }
+
+            Scanner userInput = new Scanner(System.in);
             String choice = userInput.nextLine().toLowerCase();
-            System.out.println(items.toString());
+            System.out.println();
 
             switch (choice) {
                 case "water booster":
