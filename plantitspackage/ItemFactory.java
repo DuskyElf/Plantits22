@@ -43,10 +43,7 @@ public class ItemFactory {
         };
         return items;
     }
-
-
 }
-
 
 class WaterBooster implements Items{
     @Override
